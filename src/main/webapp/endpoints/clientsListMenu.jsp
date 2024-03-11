@@ -12,7 +12,7 @@
             align-items: center;
         }
 
-        form {
+        .formSelect {
             display: flex;
             flex-direction: column;
             padding: 16px;
@@ -43,26 +43,26 @@
     int nbClients = (int) request.getAttribute("nbClients");
 %>
 <div class="formList">
-    <form method="post" action="${pageContext.request.contextPath}/action">
+    <form class="formSelect" method="post" action="${pageContext.request.contextPath}/action">
         <h2>Enregistrer un nouveau client :</h2>
         <label for="name">Nom du client à enregistrer :</label>
         <input type="text" id="name" name="name">
-        <label for="city">Ville du client à enregistrer :</label>
-        <input type="text" id="city" name="city">
-        <input type="hidden" id="function" name="function" value="registerClient">
+        <label for="city1">Ville du client à enregistrer :</label>
+        <input type="text" id="city1" name="city">
+        <input type="hidden" name="function" value="registerClient">
         <input type="submit" value="Enregistrer le client">
     </form>
-    <form method="post" action="${pageContext.request.contextPath}/action">
+    <form class="formSelect" method="post" action="${pageContext.request.contextPath}/action">
         <h2>Rechercher un client par :</h2>
         <label for="oidClient">Identifiant :</label>
         <input type="text" id="oidClient" name="oidClient">
-        <label for="city">Ville :</label>
-        <input type="text" id="city" name="city">
-        <input type="hidden" id="function" name="function" value="findClientByCity">
+        <label for="city2">Ville :</label>
+        <input type="text" id="city2" name="city">
+        <input type="hidden" name="function" value="findClientByCity">
         <input type="submit" value="Rechercher">
     </form>
     <form method="post" action="${pageContext.request.contextPath}/action">
-        <input type="hidden" id="function" name="function" value="cleanFilters">
+        <input type="hidden" name="function" value="cleanFilters">
         <input type="submit" value="Effacer les filtres">
     </form>
 </div>

@@ -17,8 +17,10 @@ public class Client {
     @Column
     private String city;
 
-    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    /*
+    @OneToMany(mappedBy = "id", fetch = FetchType.EAGER)
     private List<Order> orders;
+    */
 
     public Client() {
     }

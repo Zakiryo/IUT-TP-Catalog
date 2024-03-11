@@ -16,7 +16,7 @@ public class Order {
     private Date creationDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id")
+    //@JoinColumn(name = "id")
     private Client client;
 
     public Order() {

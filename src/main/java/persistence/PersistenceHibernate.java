@@ -15,11 +15,10 @@ public class PersistenceHibernate {
     }
 
     public void registerClient(String name, String city) {
-        EntityTransaction trx = em.getTransaction();
-        trx.begin();
+        em.getTransaction().begin();
         Client c = new Client(name, city);
         em.persist(c);
-        trx.commit();
+        em.getTransaction().commit();
     }
 
     public Client findClientById(int id) {
@@ -32,11 +31,14 @@ public class PersistenceHibernate {
 
     public void changeClientCity(int id, String newCity) {
         Client c = findClientById(id);
-        if (c == null) {
-            return;
-        }
+        assert c != null;
         c.setCity(newCity);
-        em.merge(c);
+        em.getTransaction().begin();
+        Query updateQuery = em.createQuery("UPDATE Client SET city = :city WHERE id = :id");
+        updateQuery.setParameter("city", newCity);
+        updateQuery.setParameter("id", id);
+        updateQuery.executeUpdate();
+        em.getTransaction().commit();
     }
 
     public List<Client> getClientList() {

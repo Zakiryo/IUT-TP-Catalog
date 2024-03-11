@@ -15,11 +15,11 @@ import jakarta.servlet.annotation.*;
 public class ClientHandlerServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        PersistenceHibernate ph = new PersistenceHibernate();
-        String function = request.getParameter("function");
-        String id = request.getParameter("id");
-        String name = request.getParameter("name");
-        String city = request.getParameter("city");
+        final PersistenceHibernate ph = new PersistenceHibernate();
+        final String function = request.getParameter("function");
+        final String id = request.getParameter("id");
+        final String name = request.getParameter("name");
+        final String city = request.getParameter("city");
         List<Client> clients = ph.getClientList();
         if (!Objects.equals(function, null)) {
             switch (function) {
@@ -27,12 +27,12 @@ public class ClientHandlerServlet extends HttpServlet {
                     ph.registerClient(name, city);
                     clients = ph.getClientList();
                     break;
-                case "findClientByCity":
-                    clients = ph.findClientByCity(city);
-                    break;
                 case "findClientById":
                     clients.clear();
                     clients.add(ph.findClientById(Integer.parseInt(id)));
+                    break;
+                case "findClientByCity":
+                    clients = ph.findClientByCity(city);
                     break;
                 case "changeClientCity":
                     ph.changeClientCity(Integer.parseInt(id), city);
