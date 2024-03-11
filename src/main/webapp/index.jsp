@@ -2,12 +2,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Java EE TP N°5</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
+<h1>Java EE TP N°5 : Commandes WEB</h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+<a href="${pageContext.request.contextPath}/action">Liste des clients et recherches</a>
 </body>
 </html>
